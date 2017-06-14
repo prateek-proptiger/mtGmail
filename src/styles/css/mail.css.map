@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,aAAc;EACV,OAAO,EAAE,YAAY;;AAGzB,OAAQ;EACJ,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,iBAAiB;;AAGpC,QAAS;EACL,OAAO,EAAE,IAAI;EACb,aAAa,EAAE,iBAAiB",
+"sources": ["../scss/mail.scss"],
+"names": [],
+"file": "mail.css"
+}

@@ -1,0 +1,9 @@
+<div class="inline-block">
+    <input ng-model="search.text" type="text" ng-change="fetchResults()">
+</div>
+
+<div class="suggestions">
+    <div ng-repeat="suggestion in suggestions">
+        {{suggestion.text}}
+    </div>
+</div>
