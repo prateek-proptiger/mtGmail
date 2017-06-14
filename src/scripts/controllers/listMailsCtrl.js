@@ -62,13 +62,14 @@ app.controller('ListMailsCtrl', ['$scope', '$rootScope', 'MailService', function
     $rootScope.$on('selectAll', function() {
         selectAllMails();
     });
-
     $rootScope.$on('refresh', function() {
         fetchUserEmails();
     });
-
     $rootScope.$on('delete', function() {
         deleteSelected();
+    });
+    $rootScope.$on('updateBasedOnLabel', function(label) {
+        updateBasedOnLabel(label);
     });
 
 }]);

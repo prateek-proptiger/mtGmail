@@ -66,14 +66,16 @@ app.factory('MailService', ['$q', 'ApiService', function($q, ApiService) {
 
     MailService.deleteMails = function(ids) {
         var defer = $q.defer();
-        var mail = {};
-        for (var i=0, len=mails.length; i< len; i++) {
-            if (mails[i].id == id) {
-                mail = mails[i];
-            }
-        }
-        defer.resolve(mail);
+        defer.resolve();
         return defer.promise;
+        // Call Api for the same with Ids
+    };
+
+    MailService.markAsRead = function(ids) {
+        var defer = $q.defer();
+        defer.resolve();
+        return defer.promise;
+        // Call Api for the same with Ids
     };
 
     return MailService;

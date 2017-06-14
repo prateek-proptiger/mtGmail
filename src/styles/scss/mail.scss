@@ -11,3 +11,25 @@
     padding: 15px;
     border-bottom: 5px solid #f1f1f1;
 }
+
+.side-nav {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.content {
+    width: 69%;
+    display: inline-block;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.labels {
+    li {
+        cursor: pointer;
+    }
+}

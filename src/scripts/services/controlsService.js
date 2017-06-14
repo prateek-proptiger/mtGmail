@@ -19,5 +19,10 @@ app.factory('ControlsService', function($rootScope) {
     ControlsService.delete = function() {
         $rootScope.$broadcast('delete');
     };
+
+    ControlsService.updateMailsBasedOnLabel = function(label) {
+        $rootScope.$broadcast('updateBasedOnLabel', label);
+    };
+
     return ControlsService;
 });

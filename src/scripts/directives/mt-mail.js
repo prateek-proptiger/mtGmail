@@ -8,7 +8,10 @@ app.directive('mtMail', function() {
         },
         templateUrl: 'views/directives/mt-mail.html',
         link: function(scope, iElem, iAttrs) {
-
+            
+            scope.viewMail = function() {
+                // go to route base.view
+            };
         }
     }
 });
