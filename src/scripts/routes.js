@@ -19,7 +19,7 @@ app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', functio
         controller: 'ListMailsCtrl'
     })
     .state('base.view', {
-        url: '/mail/:label/:id',
+        url: '/mail/:label/:mailId',
         templateUrl: 'views/controllers/viewMail.html',
         controller: 'ViewMailCtrl'
     })

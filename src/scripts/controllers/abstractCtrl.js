@@ -2,5 +2,5 @@
 
 app.controller('AbstractCtrl', ['$scope', function($scope) {
 
-    $scope.a = 'Hello';
+    // base level code here
 }]);

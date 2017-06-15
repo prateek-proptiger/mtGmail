@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('RouteService', ['$stateParams', '$location', function($stateParams, $location) {
+app.factory('RouteService', ['$state', '$stateParams', '$location', function($state, $stateParams, $location) {
 
     var RouteService = {};
 
@@ -9,7 +9,9 @@ app.factory('RouteService', ['$stateParams', '$location', function($stateParams,
     };
 
     RouteService.updateLabel = function(label) {
-        return $location.path('/mail/' + label);
+        $state.go('base.mail', {
+            label: label 
+        });
     };
 
     return RouteService;
