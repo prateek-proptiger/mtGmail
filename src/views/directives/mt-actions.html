@@ -1,13 +1,14 @@
 <div class="actions">
     <div class="inline-block">
-        <button type="button" ng-click="selectAll()">Select All</button>
+        <button type="button" ng-click="toggleSelection()">Toggle Selection</button>
         <button type="button" ng-click="refresh()">Refresh</button>
-        <button type="button" ng-click="markAsRead()">Mark as read</button>
+        <button type="button" ng-click="updateReadValue(true)">Mark as read</button>
+        <button type="button" ng-click="updateReadValue(false)">Mark as unread</button>
         <button type="button" ng-click="delete()">Delete</button>    
     </div>
     
     <div class="inline-block">
-        <button type="button" ng-click="pagination(-1)">L</button>
-        <button type="button" ng-click="pagination(1)">R</button>
+        <button type="button" ng-click="nextPage(-1)">L</button>
+        <button type="button" ng-click="nextPage(1)">R</button>
     </div>
 </div>

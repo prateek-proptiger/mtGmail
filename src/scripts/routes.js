@@ -1,6 +1,8 @@
 'use strict';
 
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     $urlRouterProvider
     .otherwise('/404')

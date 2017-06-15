@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('mtSideNav', ['ControlsService', function(ControlsService) {
+app.directive('mtSideNav', ['$location', 'ControlsService', function($location, ControlsService) {
     return {
         restrict: 'EA',
         scope: {},
@@ -10,8 +10,23 @@ app.directive('mtSideNav', ['ControlsService', function(ControlsService) {
             scope.updateMailResults = function(ev) {
                 var target = event.target;
                 var label = target.dataset.label;
-                ControlsService.updateMailsBasedOnLabel(label);
-            }
+                updateLabel(label);
+                ControlsService.updateMailsBasedOnLabel();
+            };
+
+            var updateLabel = function(label) {
+                $location.hash(label);
+                scope.selectedLabel = label;
+            };
+
+            var initialise = function() {
+                var hash = $location.hash();
+                var definedLabels = ['inbox, starred', 'sent'];
+                var label = (!hash || (hash && definedLabels.indexOf(hash) == -1)) ? 'inbox' : hash;
+                updateLabel(label);
+            };
+
+            initialise();
         }
     }
 }]);

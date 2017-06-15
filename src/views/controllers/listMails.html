@@ -1,3 +1,6 @@
 <div>
-    <mt-mail data="mail" ng-repeat="mail in mails"></mt-mail>
+    <div ng-if="data.mails && data.mails.length">
+        Showing {{data.start}}-{{data.end}} of {{data.totalCount}}
+    </div>
+    <mt-mail data="mail" ng-repeat="mail in data.mails"></mt-mail>
 </div>

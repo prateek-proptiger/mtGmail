@@ -1,15 +1,19 @@
+body {
+    margin: 0;
+}
+
 .inline-block {
     display: inline-block;
 }
 
 .header {
     padding: 15px;
-    border-bottom: 5px solid #f1f1f1;
+    border-bottom: 2px solid #f1f1f1;
 }
 
 .actions {
     padding: 15px;
-    border-bottom: 5px solid #f1f1f1;
+    border-bottom: 2px solid #f1f1f1;
 }
 
 .side-nav {

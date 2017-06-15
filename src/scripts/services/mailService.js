@@ -1,62 +1,41 @@
-app.factory('MailService', ['$q', 'ApiService', function($q, ApiService) {
+app.factory('MailService', ['$q', 'DataService', 'ApiService', function($q, DataService, ApiService) {
 
     var MailService = {};
+    var mails = DataService;
 
-    var mails = [{
-        id: 1,
-        selected: false,
-        starred: false,
-        read: false,
-        senderLabel: 'Prateek',
-        sender: 'prateeksehgal.iitbhu@gmail.com',
-        receipints: {
-            cc: ['abc@gmail.com'],
-            bcc: ['xyz@gmail.com']
-        },
-        category: 'Primary',
-        heading: 'Gmail App Demo',
-        content: 'Hello World'
-    }, {
-        id: 2,
-        selected: false,
-        starred: false,
-        read: true,
-        senderLabel: 'Prateek',
-        sender: 'prateeksehgal.iitbhu@gmail.com',
-        receipints: {
-            cc: ['abc@gmail.com'],
-            bcc: ['xyz@gmail.com']
-        },
-        category: 'Primary',
-        heading: 'Gmail App Demo',
-        content: 'Hello World'
-    }, {
-        id: 3,
-        selected: false,
-        starred: false,
-        read: false,
-        senderLabel: 'Prateek',
-        sender: 'prateeksehgal.iitbhu@gmail.com',
-        receipints: {
-            cc: ['abc@gmail.com'],
-            bcc: ['xyz@gmail.com']
-        },
-        category: 'Primary',
-        heading: 'Gmail App Demo',
-        content: 'Hello World'
-    }];
+    var filterMails = function(label) {
+        return mails.filter(function (mail) {
+            return mail.labels.indexOf(label) == -1;
+        });
+    };
 
-    MailService.fetchUserEmails = function() {
+    var computeResponse = function(label, page) {
+        var pageSize = 4;
+        var filteredMails = filterMails(label);
+        var totalCount = filteredMails.length;
+        var start = (pageSize * (page - 1)) + 1;
+        var end = ((page * pageSize) < totalCount ? (page * pageSize) : totalCount);
+        return {
+            start: start,
+            end: end,
+            totalCount: totalCount,
+            mails: filteredMails.slice(start - 1, end)
+        }
+    };
+
+    MailService.fetchUserMails = function(label, page) {
         var defer = $q.defer();
-        defer.resolve(mails);
+
+        defer.resolve(computeResponse(label, page));
+        // so that reference of mails is not passed
         return defer.promise;
     };
 
-    MailService.fetchEmailFromId = function(id) {
+    MailService.fetchMailDetails = function(mailId) {
         var defer = $q.defer();
         var mail = {};
         for (var i=0, len=mails.length; i< len; i++) {
-            if (mails[i].id == id) {
+            if (mails[i].id == mailId) {
                 mail = mails[i];
             }
         }
@@ -64,15 +43,29 @@ app.factory('MailService', ['$q', 'ApiService', function($q, ApiService) {
         return defer.promise;
     };
 
-    MailService.deleteMails = function(ids) {
+    MailService.deleteMails = function(mailIds) {
         var defer = $q.defer();
+        for (var i=0, len=mails.length; i< len; i++) {
+            if (mailIds.indexOf(mails[i].id) != -1) {
+                mails.splice(i, 1);
+                i--; len--;
+            }
+        }
         defer.resolve();
         return defer.promise;
         // Call Api for the same with Ids
     };
 
-    MailService.markAsRead = function(ids) {
+    MailService.updateReadValue = function(mailIds, read) {
         var defer = $q.defer();
+        // Equivalent work of API
+        for (var i=0, len = mails.length; i< len; i++) {
+            var mail = mails[i];
+            if (mailIds.indexOf(mail.id) != -1) {
+                mail.read = read;
+            }
+        }
+
         defer.resolve();
         return defer.promise;
         // Call Api for the same with Ids

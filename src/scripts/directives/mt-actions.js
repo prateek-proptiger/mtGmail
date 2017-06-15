@@ -7,17 +7,24 @@ app.directive('mtActions', ['ControlsService', function(ControlsService) {
         templateUrl: 'views/directives/mt-actions.html',
         link: function(scope, iElem, iAttrs) {
             
-            scope.selectAll = function() {
-                ControlsService.selectAll();
+            scope.toggleSelection = function() {
+                ControlsService.toggleSelection();
             };
+
             scope.refresh = function() {
                 ControlsService.refresh();
             };
-            scope.markAsRead = function() {
-                ControlsService.markAsRead();
+
+            scope.updateReadValue = function(read) {
+                ControlsService.updateReadValue(read);
             };
+
             scope.delete = function() {
                 ControlsService.delete();
+            }
+
+            scope.nextPage = function(pageIncrement) {
+                ControlsService.nextPage(pageIncrement);
             }
             
         }

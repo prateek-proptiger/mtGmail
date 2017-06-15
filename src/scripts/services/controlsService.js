@@ -4,24 +4,28 @@ app.factory('ControlsService', function($rootScope) {
 
     var ControlsService = {};
 
-    ControlsService.selectAll = function() {
-        $rootScope.$broadcast('selectAll');
+    ControlsService.toggleSelection = function() {
+        $rootScope.$broadcast('toggleSelection');
     };
 
     ControlsService.refresh = function() {
         $rootScope.$broadcast('refresh');
     };
     
-    ControlsService.markAsRead = function() {
-        $rootScope.$broadcast('markAsRead');
+    ControlsService.updateReadValue = function(read) {
+        $rootScope.$broadcast('updateReadValue', read);
     };
 
     ControlsService.delete = function() {
         $rootScope.$broadcast('delete');
     };
 
-    ControlsService.updateMailsBasedOnLabel = function(label) {
-        $rootScope.$broadcast('updateBasedOnLabel', label);
+    ControlsService.updateMailsBasedOnLabel = function() {
+        $rootScope.$broadcast('updateBasedOnLabel');
+    };
+
+    ControlsService.nextPage = function(pageIncrement) {
+        $rootScope.$broadcast('nextPage', pageIncrement);
     };
 
     return ControlsService;

@@ -1,8 +1,8 @@
 <div>
     <h3>Labels</h3>
     <ul class="labels" ng-click="updateMailResults($event)">
-        <li data-label="inbox">Inbox</li>
-        <li data-label="starred">Starred</li>
-        <li data-label="sent">Sent Mail</li>
+        <li data-label="inbox" ng-class="{'selected': selectedLabel == 'inbox'}">Inbox {{selectedLabel == 'inbox' ? true : ''}}</li>
+        <li data-label="starred" ng-class="{'selected': selectedLabel == 'starred'}">Starred {{selectedLabel == 'starred' ? true : ''}}</li>
+        <li data-label="sent" ng-class="{'selected': selectedLabel == 'sent'}">Sent Mail {{selectedLabel == 'sent' ? true : ''}}</li>
     </ul>
 </div>
