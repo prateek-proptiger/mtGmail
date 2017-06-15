@@ -1,3 +1,5 @@
+'use strict';
+
 app.factory('MailService', ['$q', 'DataService', 'ApiService', function($q, DataService, ApiService) {
 
     var MailService = {};
@@ -18,6 +20,7 @@ app.factory('MailService', ['$q', 'DataService', 'ApiService', function($q, Data
         return {
             start: start,
             end: end,
+            maxPages: (totalCount / pageSize) + 1,
             totalCount: totalCount,
             mails: filteredMails.slice(start - 1, end)
         }

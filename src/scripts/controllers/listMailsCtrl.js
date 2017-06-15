@@ -1,13 +1,13 @@
 'use strict';
 
-app.controller('ListMailsCtrl', ['$scope', '$rootScope', '$location', 'MailService', function($scope, $rootScope, $location, MailService) {
+app.controller('ListMailsCtrl', ['$scope', '$rootScope', '$location', 'MailService', 'RouteService', function($scope, $rootScope, $location, MailService, RouteService) {
 
     $rootScope.$on('toggleSelection', function(ev) {
         toggleSelection();
     });
     $rootScope.$on('refresh', function() {
         $scope.page = 1;
-        fetchUserEmails();
+        fetchUserEmailsBasedOnLabel();
     });
     $rootScope.$on('delete', function() {
         deleteSelected();
@@ -60,8 +60,11 @@ app.controller('ListMailsCtrl', ['$scope', '$rootScope', '$location', 'MailServi
     };
 
     var nextPage = function(pageIncrement) {
-        $scope.page += pageIncrement;
-        fetchUserEmailsBasedOnLabel();
+        var nextPageCount = $scope.page + pageIncrement;
+        if (nextPageCount > 0 && nextPageCount < $scope.data.maxPages) {
+            $scope.page += pageIncrement;
+            fetchUserEmailsBasedOnLabel();
+        }
     };
     /* END ACTIONS */
 
@@ -77,10 +80,9 @@ app.controller('ListMailsCtrl', ['$scope', '$rootScope', '$location', 'MailServi
 
     /* INITIALISATION */
     var fetchUserEmailsBasedOnLabel = function() {
-        var label = $location.hash();
+        var label = RouteService.getLabel();
         MailService.fetchUserMails(label, $scope.page).then(function(response) {
             $scope.data = response;
-            $scope.maxPages = 
             selection = false;
         }, function(error) {});
     };

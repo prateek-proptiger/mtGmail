@@ -1,6 +1,6 @@
 'use strict';
 
-app.directive('mtSideNav', ['$location', 'ControlsService', function($location, ControlsService) {
+app.directive('mtSideNav', ['$location', '$stateParams', 'RouteService', 'ControlsService', function($location, $stateParams, RouteService, ControlsService) {
     return {
         restrict: 'EA',
         scope: {},
@@ -15,15 +15,13 @@ app.directive('mtSideNav', ['$location', 'ControlsService', function($location, 
             };
 
             var updateLabel = function(label) {
-                $location.hash(label);
                 scope.selectedLabel = label;
+                RouteService.updateLabel(label);
             };
 
             var initialise = function() {
-                var hash = $location.hash();
-                var definedLabels = ['inbox, starred', 'sent'];
-                var label = (!hash || (hash && definedLabels.indexOf(hash) == -1)) ? 'inbox' : hash;
-                updateLabel(label);
+                var label = RouteService.getLabel();
+                scope.selectedLabel = label;
             };
 
             initialise();

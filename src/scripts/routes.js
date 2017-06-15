@@ -13,19 +13,14 @@ app.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', functio
         templateUrl: 'views/controllers/abstractCtrl.html',
         controller: 'AbstractCtrl'
     })
-    .state('base.list', {
-        url: '/list',
+    .state('base.mail', {
+        url: '/mail/:label',
         templateUrl: 'views/controllers/listMails.html',
-        controller: 'ListMailsCtrl'  
+        controller: 'ListMailsCtrl'
     })
-    // .state('base.view', {
-    //     url: '/view/:id',
-    //     templateUrl: 'views/controllers/viewMail.html',
-    //     controller: 'ViewMailCtrl'
-    // })
-    // .state('404', {
-    //     url: '/404',
-    //     templateUrl: 'views/notFound.html',
-    //     controller: 'NotFoundCtrl'
-    // })
+    .state('base.view', {
+        url: '/mail/:label/:id',
+        templateUrl: 'views/controllers/viewMail.html',
+        controller: 'ViewMailCtrl'
+    })
 }]);
