@@ -1,9 +1,9 @@
 <div class="mailWrapper">
     <span><input ng-model="data.selected" type="checkbox"></span>
-    <span><input ng-model="data.starred" type="checkbox">Star</span>
-    <span class="mail-label">{{data.senderLabel}}</span>
-    <span class="mail-head">{{data.heading}}</span>
-    <span class="mail-data">{{data.content}}</span>
+    <span> Star-<input ng-model="data.starred" type="checkbox"></span>
+    <span class="mail-label"> - {{data.senderLabel}}</span>
+    <span class="mail-head"> - {{data.heading}}</span>
+    <span class="mail-data"> - {{data.content}}</span>
 
-    <span class="mail-data">Read: {{data.read}}</span>
+    <span class="mail-data"> -- Read: {{data.read}}</span>
 </div>
